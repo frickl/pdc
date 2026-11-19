@@ -1,0 +1,24 @@
+# PDC example for a Postfix MSA/submission instance.
+#
+# IMPORTANT:
+#
+# 1. PDC must run before permit_mynetworks and permit_sasl_authenticated.
+#    Otherwise those PERMIT results short-circuit the restriction list.
+#
+# 2. Do NOT also use reject_unknown_recipient_domain here unless duplicate
+#    DNS checks are intentional. PDC performs the recipient-domain DNS checks
+#    itself and provides clearer replies for NXDOMAIN, Null MX, unusable MX,
+#    no MX/A/AAAA, and temporary DNS failures.
+#
+# 3. For minimal external DNS traffic, let PDC and Postfix use the same local
+#    caching resolver (for example Unbound or BIND on localhost). Postfix does
+#    not pass the result of reject_unknown_recipient_domain to policy services,
+#    so those results cannot be reused directly by PDC.
+
+smtpd_recipient_restrictions =
+    reject_non_fqdn_recipient,
+    check_policy_service unix:private/pdc,
+    permit_mynetworks,
+    permit_sasl_authenticated,
+    reject_unauth_destination,
+    permit

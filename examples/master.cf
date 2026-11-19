@@ -1,0 +1,4 @@
+# Postfix policy daemon for submission/MSA.
+
+pdc unix  -       n       n       -       0       spawn
+    user=nobody argv=/opt/pdc/pdc.py

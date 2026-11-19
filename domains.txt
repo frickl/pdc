@@ -1,0 +1,22 @@
+# Reference domains used for conservative typo suggestions.
+# One domain per line, no weighting.
+#
+# A suggestion is only made after the entered domain is found to be
+# non-mail-capable (or NXDOMAIN). A valid MX/implicit MX always wins.
+
+gmail.com
+googlemail.com
+outlook.com
+hotmail.com
+live.com
+icloud.com
+me.com
+yahoo.com
+gmx.de
+gmx.net
+web.de
+freenet.de
+t-online.de
+kabelmail.com
+proton.me
+protonmail.com
